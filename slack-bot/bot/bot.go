@@ -15,5 +15,5 @@ func GetAPI() *slack.Client {
 func Init() {
 	botConfig := config.GetConfig()
 
-	api = slack.New(botConfig.Token, slack.OptionDebug(true))
+	api = slack.New(botConfig.SlackToken, slack.OptionDebug(true))
 }

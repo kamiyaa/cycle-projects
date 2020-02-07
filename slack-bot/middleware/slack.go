@@ -28,7 +28,7 @@ func SlackEventParse(handler http.HandlerFunc) http.HandlerFunc {
 		event, e := slackevents.ParseEvent(json.RawMessage(body),
 				slackevents.OptionVerifyToken(
 					&slackevents.TokenComparator {
-						VerificationToken: botConfig.Token,
+						VerificationToken: botConfig.SlackToken,
 					}))
 		if e != nil {
 			w.WriteHeader(http.StatusInternalServerError)

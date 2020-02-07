@@ -1,6 +1,7 @@
 package config
 
 import (
+	"log"
 	"os"
 
 	toml "github.com/pelletier/go-toml"
@@ -21,6 +22,9 @@ func Init() error {
 }
 
 func ReadConfig(path string) (*SlackBotConfig, error) {
+	if SLACKBOT_CONFIG == "" {
+		log.Fatalf("SLACKBOT_CONFIG environment variable not defined\n")
+	}
 	file, err := os.Open(path)
 	if err != nil {
 		return nil, err;

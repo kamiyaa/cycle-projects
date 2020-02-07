@@ -12,6 +12,9 @@ const (
 	SLACK_URL			string = "/slack"
 	SLACK_HELLO_URL			string = SLACK_URL + "/hello"
 
+	CYCLE_API			string = "/cycle"
+	CYCLE_LIST_ENVIRONMENTS		string = CYCLE_API + "/environment/list"
+
 )
 
 type HttpRouteHandler struct {
@@ -29,6 +32,12 @@ var Handlers []HttpRouteHandler = []HttpRouteHandler {
 		SLACK_HELLO_URL,
 		middleware.SlackEventParse(
 			SayHelloInSlack,
+		),
+	},
+	HttpRouteHandler {
+		CYCLE_LIST_ENVIRONMENTS,
+		middleware.JsonResponse(
+			GetEnvironments,
 		),
 	},
 }
